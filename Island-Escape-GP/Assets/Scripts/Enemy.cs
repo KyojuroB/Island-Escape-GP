@@ -9,9 +9,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] float speed = 3f;
     GameObject player;
     bool isInRange;
+    GameObject range;
     void Start()
     {
-        GameObject Range = transform.GetChild(0).gameObject;
+         range = transform.GetChild(0).gameObject;
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -23,33 +24,13 @@ public class Enemy : MonoBehaviour
           
     }
 
-    private void OnCollisionEnter2D(Collision2D obj)
-    {
-        Debug.Log("Touch");
-        if (obj.gameObject == player)
-        {
-            Debug.Log("player");
-            isInRange = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D obj)
-    {
-        Debug.Log("leave");
-
-        if (obj.gameObject == player)
-        {
-            Debug.Log("player leave");
-
-            isInRange = false;
-        }
-    }
+    
 
 
 
     private void MoveTowards()
     {
-        if (isInRange == true)
+        if (range.GetComponent<EnemyRange>().IsInRange() == true)
         {
             Vector2 target = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
             transform.position = target;
