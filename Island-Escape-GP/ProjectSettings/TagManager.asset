@@ -51,6 +51,9 @@ TagManager:
   - name: foreground
     uniqueID: 783407025
     locked: 0
+  - name: grass
+    uniqueID: 2010077537
+    locked: 0
   - name: player
     uniqueID: 2994120387
     locked: 0
