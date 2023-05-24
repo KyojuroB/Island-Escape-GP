@@ -1,7 +1,13 @@
 fileFormatVersion: 2
-guid: f95fedca4f5bff547866a03701c7faf2
+guid: 4fb7f4da31174de4abf51b4e10f1d9e0
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -7847097968536560454
+    second: salamder walk_0
+  - first:
+      213: -308267466518383125
+    second: salamder walk_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -149,7 +155,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: salamder walk_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1624
+        height: 958
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abc50bb29f1891390800000000000000
+      internalID: -7847097968536560454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: salamder walk_1
+      rect:
+        serializedVersion: 2
+        x: 1624
+        y: 0
+        width: 1624
+        height: 958
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be5bc5a5f50d8bbf0800000000000000
+      internalID: -308267466518383125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
