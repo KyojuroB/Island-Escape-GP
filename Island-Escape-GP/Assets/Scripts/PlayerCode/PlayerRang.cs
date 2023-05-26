@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerRang : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,10 +14,11 @@ public class PlayerRang : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        InteractAttempt();
     }
     public List<GameObject> itemsInRange = new List<GameObject>();
-    public void OnTriggerEnter(Collider collider)
+
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         if (!itemsInRange.Contains(collider.gameObject) && GameObject.FindGameObjectWithTag("PickUpItem"))
         {
@@ -26,7 +28,7 @@ public class PlayerRang : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit(Collider collider)
+    private void OnTriggerExit2D(Collider2D collider)
     {
         if (itemsInRange.Contains(collider.gameObject))
         {
@@ -40,9 +42,9 @@ public class PlayerRang : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (itemsInRange.Count > 1)
+            if (itemsInRange.Count != 0)
             {
-
+                GameObject.FindGameObjectWithTag("HotBar").GetComponent<Hotbar>().AddItem(itemsInRange[0].GetComponent<ID>().GetIcon(), itemsInRange[0].GetComponent<ID>().GetItemID());
             }
         }
     }

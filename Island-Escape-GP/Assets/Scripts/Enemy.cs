@@ -32,8 +32,7 @@ public class Enemy : MonoBehaviour
     {
         if (range.GetComponent<EnemyRange>().IsInRange() == true)
         {
-            Vector2 target = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-            transform.position = target;
+
         }
     }    
    
