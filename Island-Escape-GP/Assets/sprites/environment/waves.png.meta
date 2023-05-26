@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: 285c0db4b3b05614595b51e502093a72
+guid: 8ba861b0429742841a11e656e97b7146
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5596761023554111343
-    second: salalmbar tounger 1_0
+      213: -4508500316453927011
+    second: waves_0
   - first:
-      213: 1313794024400718210
-    second: salalmbar tounger 1_1
-  - first:
-      213: -8713482702217532748
-    second: salalmbar tounger 1_2
-  - first:
-      213: -6287294732840938109
-    second: salalmbar tounger 1_3
+      213: 5616191202082497207
+    second: waves_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -163,55 +157,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: salalmbar tounger 1_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 922
-        width: 2150
-        height: 922
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f67c1bd7f70bbad40800000000000000
-      internalID: 5596761023554111343
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: salalmbar tounger 1_1
-      rect:
-        serializedVersion: 2
-        x: 2150
-        y: 922
-        width: 2150
-        height: 922
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2898f6454b88b3210800000000000000
-      internalID: 1313794024400718210
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: salalmbar tounger 1_2
+      name: waves_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2150
-        height: 922
+        width: 310
+        height: 74
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ba20d9f5ad731780800000000000000
-      internalID: -8713482702217532748
+      spriteID: d97070869d69e61c0800000000000000
+      internalID: -4508500316453927011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: salalmbar tounger 1_3
+      name: waves_1
       rect:
         serializedVersion: 2
-        x: 2150
+        x: 310
         y: 0
-        width: 2150
-        height: 922
+        width: 310
+        height: 74
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 385d4d280ca0fb8a0800000000000000
-      internalID: -6287294732840938109
+      spriteID: 7b22dc67428b0fd40800000000000000
+      internalID: 5616191202082497207
       vertices: []
       indices: 
       edges: []
