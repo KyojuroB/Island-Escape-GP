@@ -7,6 +7,7 @@ public class ID : MonoBehaviour
 {
     [SerializeField] int ItemID;
     [SerializeField] Sprite icon;
+    [SerializeField] bool hold;
 
     public int GetItemID()
     {
@@ -15,6 +16,10 @@ public class ID : MonoBehaviour
     public Sprite GetIcon()
     {
         return icon;
+    }
+    public bool Holdable()
+    { 
+        return hold;
     }
 
     private void Start()

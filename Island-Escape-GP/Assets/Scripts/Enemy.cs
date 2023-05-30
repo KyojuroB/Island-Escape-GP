@@ -28,11 +28,11 @@ public class Enemy : MonoBehaviour
 
 
 
-    private void MoveTowards()
+    public void MoveTowards()
     {
         if (range.GetComponent<EnemyRange>().IsInRange() == true)
         {
-
+            Debug.Log("chase");
         }
     }    
    

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class Hotbar : MonoBehaviour
 {
     int currentSlot = 1;
@@ -11,6 +11,8 @@ public class Hotbar : MonoBehaviour
     List<Image> slots;
     [SerializeField] List<bool> slotsOccupied;
     [SerializeField] List<int> slotID;
+    [SerializeField] List<int> amountInSlot;
+    [SerializeField] List<bool> CanHoldThisSlot;
     GameObject Selecter;
     // Start is called before the first frame update
     void Start()
@@ -24,47 +26,64 @@ public class Hotbar : MonoBehaviour
         }
         foreach (Transform child in transform)
         {
+            CanHoldThisSlot.Add(false);
+
+        }
+        foreach (Transform child in transform)
+        {
            slotID.Add(0);
         }
-
-
-
-
-
-
-
+        foreach (Transform child in transform)
+        {
+            amountInSlot.Add(0);
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         SlotSelection();
     }
 
+    private void FixedUpdate()
+    {
+             
+    }
 
-    public void AddItem(Sprite itemPic, int ID)
-    {        int index = slotsOccupied.FindIndex(element => element == false);
+    public void AddItem(Sprite itemPic, int ID, bool holdable)
+    {       
+        int index = slotsOccupied.FindIndex(element => element == false);
 
         if (index != -1)
         {
-            Debug.Log("NextSlotIs " + index);
+            if (slotID.Contains(ID))
+            {
+                {
+                    int changeMyCount = slotID.IndexOf(ID);
+                    amountInSlot[changeMyCount]++;
+                    transform.GetChild(changeMyCount).GetChild(1).GetComponent<TextMeshProUGUI>().text = amountInSlot[changeMyCount].ToString();
+                    
+
+                }
+            }
+            else
+            {
+                CanHoldThisSlot[index] = holdable;
+                transform.GetChild(index).GetChild(0).GetComponent<Image>().enabled = true;
+                amountInSlot[index] = 1;
+                transform.GetChild(index).GetChild(0).GetComponent<Image>().sprite = itemPic;
+                slotID[index] = ID;
+                slotsOccupied[index] = true;
+               transform.GetChild(index).GetChild(1).GetComponent<TextMeshProUGUI>().text = amountInSlot[index].ToString();
+                Debug.Log("NextSlotIs " + index);
+            }
+
         }
         else
         {
             Debug.Log("Inv is full");
-
-          //  transform.GetChild(index).GetChild(0).gameObject.GetComponent<Image>().IsActive(false);
-            transform.GetChild(index).GetChild(0).GetComponent<Image>().sprite = itemPic;
+        }
 
 
-
-            if (slotID.Contains(ID))
-            {
-                {
-
-                }
-            }
-        } 
     }
 
 
@@ -78,6 +97,7 @@ public class Hotbar : MonoBehaviour
                 {
                     currentSlot = 1;
                     Selecter.transform.position = transform.GetChild(0).transform.position;
+                    
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha2))
                 {

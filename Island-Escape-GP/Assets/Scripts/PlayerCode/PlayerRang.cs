@@ -44,7 +44,13 @@ public class PlayerRang : MonoBehaviour
         {
             if (itemsInRange.Count != 0)
             {
-                GameObject.FindGameObjectWithTag("HotBar").GetComponent<Hotbar>().AddItem(itemsInRange[0].GetComponent<ID>().GetIcon(), itemsInRange[0].GetComponent<ID>().GetItemID());
+                if(itemsInRange.Find(obj => obj.GetComponent<ID>() != null))
+                { 
+                 Debug.Log("addToInv");
+
+                    GameObject.FindGameObjectWithTag("HotBar").GetComponent<Hotbar>().AddItem(itemsInRange[0].GetComponent<ID>().GetIcon(), itemsInRange[0].GetComponent<ID>().GetItemID(), itemsInRange[0].GetComponent<ID>().Holdable());
+                }
+               
             }
         }
     }
