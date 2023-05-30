@@ -50,12 +50,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: foreground
-    uniqueID: 783407025
-    locked: 0
   - name: grass
     uniqueID: 2010077537
     locked: 0
+  - name: foreground
+    uniqueID: 783407025
+    locked: 0
   - name: player
     uniqueID: 2994120387
+    locked: 0
+  - name: hills
+    uniqueID: 2263378707
     locked: 0
