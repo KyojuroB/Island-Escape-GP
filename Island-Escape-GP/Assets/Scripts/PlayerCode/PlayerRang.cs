@@ -15,6 +15,7 @@ public class PlayerRang : MonoBehaviour
     void Update()
     {
         InteractAttempt();
+        itemsInRange.RemoveAll(GameObject => GameObject == null);
     }
     public List<GameObject> itemsInRange = new List<GameObject>();
 
@@ -35,6 +36,7 @@ public class PlayerRang : MonoBehaviour
             itemsInRange.Remove(collider.gameObject);
             Debug.Log("Removed " + gameObject.name);
             Debug.Log("GameObjects in list: " + itemsInRange.Count);
+
         }
     }
 
@@ -46,9 +48,10 @@ public class PlayerRang : MonoBehaviour
             {
                 if(itemsInRange.Find(obj => obj.GetComponent<ID>() != null))
                 { 
-                 Debug.Log("addToInv");
-
+                    Debug.Log("addToInv");
+                    
                     GameObject.FindGameObjectWithTag("HotBar").GetComponent<Hotbar>().AddItem(itemsInRange[0].GetComponent<ID>().GetIcon(), itemsInRange[0].GetComponent<ID>().GetItemID(), itemsInRange[0].GetComponent<ID>().Holdable());
+                    Destroy(itemsInRange[0],0.1f);
                 }
                
             }

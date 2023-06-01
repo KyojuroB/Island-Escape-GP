@@ -60,6 +60,16 @@ public class Player : MonoBehaviour
             movementMultiply = 35;
         }
     }
+    private void meleAttack()
+    {
+
+ 
+    
+    }
+
+
+
+
 
     private void move()
     {
