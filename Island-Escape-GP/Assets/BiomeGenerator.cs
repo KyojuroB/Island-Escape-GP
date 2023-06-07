@@ -1,21 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
-public class BiomeGnerator : MonoBehaviour
+public class BiomeGenerator : MonoBehaviour
 {
-
     float minX;
-    float maxX; 
-    float minY; 
+    float maxX;
+    float minY;
     float maxY;
     ///
-    List<GameObject> spawnableItems;
-    List<int> min;
-    List<int> max;
-    List<int> amount;
-    List<Vector2> Pos;
+
+
+    [SerializeField] List<GameObject> spawnableItems;
+    [SerializeField] List<int> min;
+    [SerializeField] List<int> max;
+    [SerializeField] List<int> amount;
+ 
+    [SerializeField] List<GameObject> instantiatedItems;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,23 +35,29 @@ public class BiomeGnerator : MonoBehaviour
             var amm = Random.Range(min[i], max[i]++);
             amount.Add(amm);
         }
+        
+
+
 
         for (int y = 0; y < spawnableItems.Count; y++)
         {
             for (int x = 0; x < amount[y]; x++)
             {
-                Instantiate(spawnableItems[y]);
+                var qobj = Instantiate(spawnableItems[y]);
+                qobj.transform.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+                instantiatedItems.Add(qobj);
+
             }
 
         }
 
     }
 
-    
+
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

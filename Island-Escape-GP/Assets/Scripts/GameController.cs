@@ -8,13 +8,15 @@ public class GameController : MonoBehaviour
     [SerializeField] Image vignetteElement;
     [SerializeField] int hourswhendark =9;
     [SerializeField] float alphavig = 0;
-    [SerializeField] int hours = 12;
-    [SerializeField] int minutes = 0;
-    [SerializeField] public bool isAmPm = true;
+    [SerializeField] int hours = 1;
+    [SerializeField] int minutes = 1;
+    [SerializeField] public bool isAmPm = false;
+    [SerializeField] float britSec = 1f;
     //Am = true, Pm = false
     [SerializeField] float secondsPerMinute = 1f;
-
+    [SerializeField] bool isNight;
     bool clocking = false;
+    bool timechange = false;
     
     public int GetMinutes()
     { 
@@ -25,22 +27,68 @@ public class GameController : MonoBehaviour
         return hours;
     }
 
-    private void GoDark()
+    public void GoDark()
     {
        var vingette = vignetteElement.GetComponent<Image>();
-       vingette.color = new Color(vingette.color.r, vingette.color.g, vingette.color.b, alphavig);
+        while (alphavig < 1 && !timechange)
+        { 
+          vingette.color = new Color(vingette.color.r, vingette.color.g, vingette.color.b, alphavig);
+          if (!timechange)
+          {
+             StartCoroutine(GetDarker());
+          }
+        }
+
         
+    }
+    IEnumerator GetDarker()
+    {
+        timechange = true;
+        alphavig = alphavig + 0.025f;
+        yield return new WaitForSeconds(britSec);
+        timechange = false;
+    }
+
+    public void GoBright()
+    {
+        var vingette = vignetteElement.GetComponent<Image>();
+        while (alphavig > 0 && !timechange)
+        {
+            vingette.color = new Color(vingette.color.r, vingette.color.g, vingette.color.b, alphavig);
+            if (!timechange)
+            {
+                StartCoroutine(GetBrighty());
+            }
+        }
 
 
-
-        
-
-
-
+    }
+    IEnumerator GetBrighty()
+    {
+        timechange = true;
+        alphavig = alphavig - 0.025f;
+        yield return new WaitForSeconds(britSec);
+        timechange = false;
     }
 
 
 
+
+
+
+    private void FixedUpdate()
+    {
+        if(hours == 8 && isAmPm == false)
+        { 
+          isNight = true;
+            GoDark();
+        }
+        if (hours == 8 && isAmPm == true)
+        {
+            isNight = false;
+            GoBright();
+        }
+    }
 
 
     // Start is called before the first frame update
@@ -57,7 +105,7 @@ public class GameController : MonoBehaviour
           StartCoroutine(ClockIncrease());
         }
 
-        `   A
+        
         if(minutes >= 60)
         {
             hours++;

@@ -5,8 +5,9 @@ using TMPro;
 using Unity.VisualScripting;
 public class DigitalClock : MonoBehaviour
 {
+    bool isFirstZero = true;
+    string time;
 
-     
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,7 @@ public class DigitalClock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
       int hours =  GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().GetHours();
       int minutes = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().GetMinutes();
       string apm;
@@ -24,9 +26,24 @@ public class DigitalClock : MonoBehaviour
             apm = "Am";
         }
         else
-        { 
-         apm = "Pm";
+        {
+            apm = "Pm";
         }
-        gameObject.GetComponent<TextMeshProUGUI>().text = (hours.ToString() + ":" + minutes.ToString() + "   " + apm);
+        
+        if (minutes - 10 >= 0)
+        {
+            time = hours.ToString() + ":" + minutes.ToString() + "   " + apm;
+           
+            isFirstZero = true;
+        }
+        else
+        {
+            time = hours.ToString() + ":" + 0 + minutes.ToString() + "   " + apm;
+            isFirstZero = false;
+        }
+
+
+
+        gameObject.GetComponent<TextMeshProUGUI>().text = (time);
     }
 }
