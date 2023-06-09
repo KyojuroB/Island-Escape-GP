@@ -8,6 +8,7 @@ TagManager:
   - PickUpItem
   - HotBar
   - Killable
+  - HungyWungyBar
   layers:
   - Default
   - TransparentFX

@@ -12,7 +12,7 @@ public class StaminaBar : MonoBehaviour
     {
         if (GameObject.FindGameObjectWithTag("Player") != null)
         {
-            int getHealthFromPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().GetStamina();
+            float getHealthFromPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().GetStamina();
             stamina = getHealthFromPlayer / 100f;
             SetHealthBar();
         }

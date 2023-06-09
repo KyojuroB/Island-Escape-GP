@@ -10,14 +10,16 @@ public class Player : MonoBehaviour
     [SerializeField] bool isMoving = false;
     AudioSource audioSource;
     bool ifSprint = false;
-    [SerializeField] int stamina = 100;
+    [SerializeField] float stamina = 100;
     [SerializeField] float dashCoolDown = 2.2f;
     [SerializeField] float dashSpeed = 70f;
     [SerializeField] float dashDuration = 0.2f;
     bool isDashing = false;
-    bool isReplenishingStamina = false; 
-
+    bool isReplenishingStamina = false;
+    [SerializeField] float staminaincrease = 2f;
     [SerializeField] int health = 100;
+
+    
 
     private void Awake()
     {
@@ -32,7 +34,13 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+
         move();
+
+
+        int hung = GameObject.FindGameObjectWithTag("HungyWungyBar").GetComponent<Hunger>().hunger;
+        staminaincrease = hung / 100 * staminaincrease;
     }
 
     private void sprint()
@@ -152,7 +160,7 @@ public class Player : MonoBehaviour
         while (stamina < 100 && ifSprint == false)
         {
             yield return new WaitForSeconds(0.5f);
-            stamina += 2;
+            stamina += staminaincrease;
         }
 
         isReplenishingStamina = false; 
@@ -168,7 +176,7 @@ public class Player : MonoBehaviour
         return health;
     }
 
-    public int GetStamina()
+    public float GetStamina()
     {
         return stamina;
     }
