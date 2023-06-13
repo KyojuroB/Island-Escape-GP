@@ -30,17 +30,14 @@ public class Player : MonoBehaviour
     {
         sprint();
         Dash();
+        float hung = GameObject.FindGameObjectWithTag("HungyWungyBar").GetComponent<Hunger>().hungertobar;
+        staminaincrease = hung * 2;
+       
     }
 
     private void FixedUpdate()
     {
-        
-
         move();
-
-
-        int hung = GameObject.FindGameObjectWithTag("HungyWungyBar").GetComponent<Hunger>().hunger;
-        staminaincrease = hung / 100 * staminaincrease;
     }
 
     private void sprint()

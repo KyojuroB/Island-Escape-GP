@@ -9,6 +9,10 @@ TagManager:
   - HotBar
   - Killable
   - HungyWungyBar
+  - Blade
+  - Wires
+  - Motor
+  - FinalList
   layers:
   - Default
   - TransparentFX

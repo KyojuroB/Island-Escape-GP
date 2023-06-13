@@ -20,7 +20,7 @@ public class Hunger : MonoBehaviour
     {
         
         hungertobar = hunger / 100f;
-        Debug.Log(hungertobar);
+      
         gameObject.GetComponent<Image>().fillAmount = hungertobar;
         if (!isHunger)
         {
