@@ -38,10 +38,12 @@ public class List : MonoBehaviour
             if (!isact)
             {
                 rectTransform.anchoredPosition = defaultPos;
+                isact = true;
             }
             else
             {
                 rectTransform.anchoredPosition = outPos;
+                isact = false;
             }
                     
 

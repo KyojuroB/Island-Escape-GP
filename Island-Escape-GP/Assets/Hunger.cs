@@ -20,7 +20,6 @@ public class Hunger : MonoBehaviour
     {
         
         hungertobar = hunger / 100f;
-      
         gameObject.GetComponent<Image>().fillAmount = hungertobar;
         if (!isHunger)
         {
@@ -30,6 +29,10 @@ public class Hunger : MonoBehaviour
     public void AddHunger(int hungerAdd)
     { 
         hunger += hungerAdd;
+        if (hunger > 100)
+        { 
+            hunger = hunger = 100;
+        }
 
     }
     IEnumerator TakeAwayHunger()
