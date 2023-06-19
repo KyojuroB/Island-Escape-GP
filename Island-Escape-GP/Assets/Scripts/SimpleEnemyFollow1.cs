@@ -5,7 +5,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class SimpleEnemyFollow1 : MonoBehaviour
+public class SimpleEnemyFollow : MonoBehaviour
 {
     public float movespeed = 5f;
     
