@@ -60,7 +60,7 @@ public class List : MonoBehaviour
     {
         if(partsfound == 3)
         {
-            Debug.Log("Done game");
+            GameObject.FindGameObjectWithTag("SceneLoader").GetComponent<SceneLoader>().load();
         }
 
     }

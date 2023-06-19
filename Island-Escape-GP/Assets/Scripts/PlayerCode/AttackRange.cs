@@ -8,7 +8,8 @@ public class AttackRange : MonoBehaviour
 {
     public List<GameObject> entitiesInRange = new List<GameObject>();
     [SerializeField] int fistDamage = 10;
-    [SerializeField] float FistCoolDown = 0.4f;
+    [SerializeField] float FistCoolDown = 0.6f;
+    public bool isAttacking = false;
     void Start()
     {
         
@@ -48,9 +49,12 @@ public class AttackRange : MonoBehaviour
             {
                 if (entitiesInRange.Find(obj => obj.GetComponent<AllEntities>() != null))
                 {
-                    Debug.Log("attack");
-                    entitiesInRange[0].GetComponent<AllEntities>().TakeAwayHealth(fistDamage);
-                    StartCoroutine(CoolDown());
+
+                    if (!isAttacking)
+                    {
+                        StartCoroutine(CoolDown());
+                    }
+                   
                 }
             }
         }
@@ -58,6 +62,10 @@ public class AttackRange : MonoBehaviour
 
     private IEnumerator CoolDown()
     {
+        isAttacking=true;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().AttackAnimation();
+        entitiesInRange[0].GetComponent<AllEntities>().TakeAwayHealth(fistDamage);
         yield return new WaitForSeconds(FistCoolDown);
+        isAttacking=false;
     }
 }

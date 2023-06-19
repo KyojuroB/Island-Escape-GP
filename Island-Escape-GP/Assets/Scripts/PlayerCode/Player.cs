@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class Player : MonoBehaviour
 {
     // Movement
     [SerializeField] float moveSpeed;
     [SerializeField] int movementMultiply;
-    [SerializeField] bool isMoving = false;
+
     AudioSource audioSource;
     bool ifSprint = false;
     [SerializeField] float stamina = 100;
@@ -18,21 +19,56 @@ public class Player : MonoBehaviour
     bool isReplenishingStamina = false;
     [SerializeField] float staminaincrease = 2f;
     [SerializeField] int health = 100;
-
-    
+    Animator animator;
+    [SerializeField] bool isMoving = false;
+    [SerializeField] bool isLeft = true;
+    [SerializeField]Animation attackanim;
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();    
         audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
+        
         sprint();
-        Dash();
+      //  Dash();
         float hung = GameObject.FindGameObjectWithTag("HungyWungyBar").GetComponent<Hunger>().hungertobar;
         staminaincrease = hung * 2;
-       
+        WalkAnimation();
+        
+
+    }
+    public void AttackAnimation()
+    {
+        animator.SetTrigger("Attack");
+    
+    }
+    private void WalkAnimation()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+
+        }
+
+        if (isMoving)
+        {
+            animator.SetBool("IsMoving", true);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
+        }
+
+        isMoving = GetComponent<Rigidbody2D>().velocity.magnitude > 0.12f;
     }
 
     private void FixedUpdate()
