@@ -55,18 +55,23 @@ public class PlayerRang : MonoBehaviour
         }
     }
 
+
+
+
+
+
     public void InteractAttempt()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (itemsInRange.Count != 0)
             {
-                if (itemsInRange.Find(obj => obj.GetComponent<ID>() != null))
+                if (itemsInRange.Any(item => item.CompareTag("PickUpItem")))
                 {
                     Debug.Log("addToInv");
-
-                    GameObject.FindGameObjectWithTag("HotBar").GetComponent<Hotbar>().AddItem(itemsInRange[0].GetComponent<ID>().GetIcon(), itemsInRange[0].GetComponent<ID>().GetItemID(), itemsInRange[0].GetComponent<ID>().Holdable());
-                    Destroy(itemsInRange[0], 0.1f);
+                    int lowestIndex = itemsInRange.FindIndex(obj => obj.CompareTag("PickUpItem"));
+                    GameObject.FindGameObjectWithTag("HotBar").GetComponent<Hotbar>().AddItem(itemsInRange[lowestIndex].GetComponent<ID>().GetIcon(), itemsInRange[lowestIndex].GetComponent<ID>().GetItemID(), itemsInRange[lowestIndex].GetComponent<ID>().Holdable());
+                    Destroy(itemsInRange[lowestIndex], 0.1f);
 
                 }
                 else if (itemsInRange.Any(item => item.CompareTag("Motor")) || itemsInRange.Any(item => item.CompareTag("Blade")) || itemsInRange.Any(item => item.CompareTag("Wires")))

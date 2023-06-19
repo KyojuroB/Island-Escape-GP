@@ -4,11 +4,14 @@ using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Reflection;
+
 public class Hotbar : MonoBehaviour
 {
     int currentSlot = 1;
     int totalSlots = 7;
     List<Image> slots;
+    [SerializeField] Sprite defaultimg;
     [SerializeField] List<bool> slotsOccupied;
     [SerializeField] List<int> slotID;
     [SerializeField] List<int> amountInSlot;
@@ -42,6 +45,7 @@ public class Hotbar : MonoBehaviour
     void Update()
     {
         SlotSelection();
+        Eat();
     }
 
     private void FixedUpdate()
@@ -86,11 +90,51 @@ public class Hotbar : MonoBehaviour
 
     }
 
-
-
-
-        public void SlotSelection()
+        public void Eat()
         {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("click");
+                if (slotID[currentSlot - 1] < 10)
+                {
+                    
+                    if(slotID[currentSlot - 1] == 1)
+                    {
+                     GameObject.FindGameObjectWithTag("HungyWungyBar").GetComponent<Hunger>().AddHunger(20);
+                     RemoveitemFromSlot(currentSlot - 1);
+                    }
+                    else if(slotID[currentSlot - 1] == 2)
+                    {
+                        GameObject.FindGameObjectWithTag("HungyWungyBar").GetComponent<Hunger>().AddHunger(-10);
+                        RemoveitemFromSlot(currentSlot - 1);
+                    }
+                    else if(slotID[currentSlot - 1] == 3)
+                    {
+                        GameObject.FindGameObjectWithTag("HungyWungyBar").GetComponent<Hunger>().AddHunger(12);
+                        RemoveitemFromSlot(currentSlot - 1);
+                    }
+                }
+            }
+        }
+    public void RemoveitemFromSlot(int slot)
+    {
+        if (amountInSlot[slot] >= 2)
+        {
+            amountInSlot[slot]--;
+            transform.GetChild(slot).GetChild(1).GetComponent<TextMeshProUGUI>().text = amountInSlot[slot].ToString();
+        }
+        else
+        {
+            amountInSlot[slot] = 0;
+            slotID[slot] = 0;
+            slotsOccupied[slot] = false;    
+            transform.GetChild(slot).GetChild(1).GetComponent<TextMeshProUGUI>().text = amountInSlot[slot].ToString();
+            transform.GetChild(slot).GetChild(0).GetComponent<Image>().sprite = defaultimg;
+            transform.GetChild(slot).GetChild(0).GetComponent<Image>().enabled = false;
+        }
+    }
+    public void SlotSelection()
+    {
             if (Input.anyKeyDown)
             {
                 if (Input.GetKeyDown(KeyCode.Alpha1))
