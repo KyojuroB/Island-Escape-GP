@@ -13,6 +13,7 @@ TagManager:
   - Wires
   - Motor
   - FinalList
+  - SceneLoader
   layers:
   - Default
   - TransparentFX
