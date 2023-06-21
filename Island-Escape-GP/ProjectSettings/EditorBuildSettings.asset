@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/MartinTest.unity
-    guid: e8ddcd576a588fa4aa30a192562e8ea4
-  - enabled: 1
     path: Assets/Scenes/LobbyM.unity
     guid: 47b6e007b8e1e094286e4a759bf4fdf8
   - enabled: 1
@@ -20,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 0eb28d151c6bf414d997ebe0ac70ee5a
+  - enabled: 1
+    path: Assets/Scenes/Win.unity
+    guid: 1950a2eae27fed745af8dc02d5afa52c
   m_configObjects: {}
