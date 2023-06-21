@@ -10,9 +10,10 @@ public class AttackRange : MonoBehaviour
     [SerializeField] int fistDamage = 10;
     [SerializeField] float FistCoolDown = 0.6f;
     public bool isAttacking = false;
+    AudioSource audioSource;
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();   
     }
     void Update()
     {
@@ -66,6 +67,10 @@ public class AttackRange : MonoBehaviour
         isAttacking=true;
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().AttackAnimation();
         entitiesInRange[0].GetComponent<AllEntities>().TakeAwayHealth(fistDamage);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
         yield return new WaitForSeconds(FistCoolDown);
         isAttacking=false;
     }

@@ -62,10 +62,18 @@ public class Player : MonoBehaviour
         if (isMoving)
         {
             animator.SetBool("IsMoving", true);
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
         else
         {
             animator.SetBool("IsMoving", false);
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
         }
 
         isMoving = GetComponent<Rigidbody2D>().velocity.magnitude > 0.12f;

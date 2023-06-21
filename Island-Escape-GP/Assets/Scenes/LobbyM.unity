@@ -12146,7 +12146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4331944732336326601, guid: a8fafd2f58d58c845bb31dd14f2cb0a2, type: 3}
       propertyPath: SceneIndex
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8419738802449537802, guid: a8fafd2f58d58c845bb31dd14f2cb0a2, type: 3}
       propertyPath: m_RootOrder
