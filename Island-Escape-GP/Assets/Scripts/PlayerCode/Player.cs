@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -30,6 +31,15 @@ public class Player : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    public void DoDamage(int damage)
+    { 
+        health -= damage;   
+    
+    
+    }
+
+   
+
     private void Update()
     {
         
@@ -38,6 +48,10 @@ public class Player : MonoBehaviour
         float hung = GameObject.FindGameObjectWithTag("HungyWungyBar").GetComponent<Hunger>().hungertobar;
         staminaincrease = hung * 2;
         WalkAnimation();
+        if (health <= 0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
         
 
     }
