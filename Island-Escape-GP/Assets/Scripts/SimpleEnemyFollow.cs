@@ -38,7 +38,7 @@ public class SimpleEnemyFollow1 : MonoBehaviour
         rb.rotation = angle;
         direction.Normalize();
         EnemyMovement = direction;
-
+        
     }
     private void FixedUpdate()
     {

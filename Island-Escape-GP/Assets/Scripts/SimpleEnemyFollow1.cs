@@ -13,8 +13,10 @@ public class SimpleEnemyFollow : MonoBehaviour
     public Transform playerTransform;
     private Rigidbody2D rb;
     private Vector2 EnemyMovement;
-    GameObject Range;
+    [SerializeField]float range;
     bool inRange;
+    [SerializeField] Transform enemy;
+    
     // Start is called before the first frame update
 
 
@@ -23,7 +25,7 @@ public class SimpleEnemyFollow : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
 
         Player = GameObject.FindGameObjectWithTag("Player");
-
+        
     }
 
     // Update is called once per frame
@@ -38,15 +40,30 @@ public class SimpleEnemyFollow : MonoBehaviour
         rb.rotation = angle;
         direction.Normalize();
         EnemyMovement = direction;
-
+        rangeCheck();
     }
     private void FixedUpdate()
     {
-        moveCharectar(EnemyMovement);
+        
     }
     void moveCharectar(Vector2 direction)
     {
         rb.MovePosition((Vector2)transform.position + (direction * movespeed * Time.deltaTime));
     }
-        
+ 
+    
+    private void rangeCheck()
+    {
+        if(Vector3.Distance(Player.transform.position, transform.position) < range) 
+        {
+            moveCharectar(EnemyMovement);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, range);
+    }
+
+
 }
