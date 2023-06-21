@@ -6,18 +6,58 @@ public class RandomWalkAround : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 72.7f;
     private bool isActive = false;
-
+    private Vector3 previousPosition;
+    Animator animator;
+    [SerializeField] bool animate = true;
+    int changeX;
+    int changeY;
     private void Start()
     {
         StartCoroutine(Walk());
+        previousPosition = transform.position;
+        animator = GetComponent<Animator>();
     }
+    private void Update()
+    {
+        if (animate)
+        {
+            if (changeX > 0)
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            if (changeX < 0)
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
+
+                    Vector3 currentPosition = transform.position;
+
+            float distance = Vector3.Distance(previousPosition, currentPosition);
+
+            if (distance > 0.01)
+            {
+                animator.SetBool("Move", true);
+            }
+            else
+            {
+                animator.SetBool("Move", false);
+            }
+
+            previousPosition = currentPosition;
+        }
+
+    }
+
+
+
+
 
     private IEnumerator Walk()
     {
         isActive = true;
 
-        int changeX = Random.Range(-50, 50);
-        int changeY = Random.Range(-59, 50);
+         changeX = Random.Range(-50, 50);
+         changeY = Random.Range(-59, 50);
 
         Vector3 targetPosition = new Vector3(transform.position.x + changeX, transform.position.y + changeY, 0);
 
@@ -36,4 +76,6 @@ public class RandomWalkAround : MonoBehaviour
             StartCoroutine(Walk());
         }
     }
+
+
 }

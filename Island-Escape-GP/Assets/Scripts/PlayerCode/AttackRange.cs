@@ -37,7 +37,8 @@ public class AttackRange : MonoBehaviour
             entitiesInRange.Remove(collider.gameObject);
             Debug.Log("Removed " + gameObject.name + " To Possible attack list");
             Debug.Log("GameObjects in list: " + entitiesInRange.Count );
-        }
+            isAttacking = false;
+}
     }
 
 
