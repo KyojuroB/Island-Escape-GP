@@ -7466,7 +7466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movespeed: 5
   playerTransform: {fileID: 1213014139}
-  range: 1
+  range: 200
   enemy: {fileID: 1213014139}
 --- !u!212 &353931649
 SpriteRenderer:
@@ -25363,7 +25363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213014137}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7507, y: -858, z: 0}
+  m_LocalPosition: {x: 7520, y: -764, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
