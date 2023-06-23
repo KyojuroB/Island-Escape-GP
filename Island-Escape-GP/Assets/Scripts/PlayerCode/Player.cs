@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
     [SerializeField] bool isLeft = true;
     [SerializeField]Animation attackanim;
 
+    [SerializeField] float changeY;
+    [SerializeField] float changeX;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();    
@@ -42,6 +45,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+
         
         sprint();
       //  Dash();
@@ -76,21 +80,26 @@ public class Player : MonoBehaviour
         if (isMoving)
         {
             animator.SetBool("IsMoving", true);
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
+
         }
         else
         {
             animator.SetBool("IsMoving", false);
-            if (audioSource.isPlaying)
-            {
-                audioSource.Stop();
-            }
+  
         }
+        //if (Input.anyKey)
+        //{
+        //    if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+        //    {
+        //        isMoving = true;
+        //    }
+        //    else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
+        //    {
+        //        isMoving = false;
+        //    }
+        //}
 
-        isMoving = GetComponent<Rigidbody2D>().velocity.magnitude > 0.12f;
+        //isMoving = Mathf.Abs(GetComponent<Rigidbody2D>().velocity.magnitude) > 0.01f;
     }
 
     private void FixedUpdate()
@@ -138,13 +147,15 @@ public class Player : MonoBehaviour
     {
         if (!isDashing)
         {
-            float changeY = Input.GetAxis("Vertical") * moveSpeed * movementMultiply * Time.deltaTime;
-            float changeX = Input.GetAxis("Horizontal") * moveSpeed * movementMultiply * Time.deltaTime;
+            changeY = Input.GetAxis("Vertical") * moveSpeed * movementMultiply * Time.deltaTime;
+            changeX = Input.GetAxis("Horizontal") * moveSpeed * movementMultiply * Time.deltaTime;
 
             GetComponent<Rigidbody2D>().velocity = new Vector2(changeX, changeY);
 
             if (changeX != 0 || changeY != 0)
             {
+                Debug.Log("moving");
+
                 if (!audioSource.isPlaying)
                 {
                     audioSource.Play();

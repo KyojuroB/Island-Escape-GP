@@ -11,6 +11,7 @@ public class RandomWalkAround : MonoBehaviour
     [SerializeField] bool animate = true;
     int changeX;
     int changeY;
+
     private void Start()
     {
         StartCoroutine(Walk());

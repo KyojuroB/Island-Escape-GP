@@ -6,6 +6,8 @@ using UnityEngine.U2D;
 public class AllEntities : MonoBehaviour
 {
     [SerializeField] int health = 100;
+    [SerializeField] GameObject drops;
+    bool died = false;
     void Start()
     {
         
@@ -13,8 +15,15 @@ public class AllEntities : MonoBehaviour
     void Update()
     {
         if (health <= 0)
-        { 
-          Destroy(gameObject, 0.5f);
+        {
+
+            if (drops != null && !died )
+            { 
+                Instantiate(drops, transform.position, Quaternion.identity);
+                died = true;
+            }
+            
+            Destroy(gameObject, 0.5f);
         }
     }
     public void TakeAwayHealth(int damage)

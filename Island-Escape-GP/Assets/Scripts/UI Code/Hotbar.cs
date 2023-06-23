@@ -16,10 +16,12 @@ public class Hotbar : MonoBehaviour
     [SerializeField] List<int> slotID;
     [SerializeField] List<int> amountInSlot;
     [SerializeField] List<bool> CanHoldThisSlot;
+    [SerializeField] AudioSource audiosource;
     GameObject Selecter;
     // Start is called before the first frame update
     void Start()
     {
+        audiosource = GetComponent<AudioSource>();
         Selecter = GameObject.FindGameObjectWithTag("SlotSelecter");
        
         foreach (Transform child in transform)
@@ -97,6 +99,15 @@ public class Hotbar : MonoBehaviour
                 Debug.Log("click");
                 if (slotID[currentSlot - 1] < 10)
                 {
+
+                    if (!audiosource.isPlaying)
+                    {
+                        audiosource.Play();
+                    }
+                    else
+                    {
+                      audiosource.Stop();
+                    }
                     
                     if(slotID[currentSlot - 1] == 1)
                     {
@@ -111,6 +122,12 @@ public class Hotbar : MonoBehaviour
                     else if(slotID[currentSlot - 1] == 3)
                     {
                         GameObject.FindGameObjectWithTag("HungyWungyBar").GetComponent<Hunger>().AddHunger(12);
+                        RemoveitemFromSlot(currentSlot - 1);
+                    }
+                    else if(slotID[currentSlot - 1] == 4)
+                    {
+                        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().DoDamage(12);
+                        GameObject.FindGameObjectWithTag("HungyWungyBar").GetComponent<Hunger>().AddHunger(40);
                         RemoveitemFromSlot(currentSlot - 1);
                     }
                 }
