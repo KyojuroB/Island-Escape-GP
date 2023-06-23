@@ -8,7 +8,7 @@ using System.Reflection;
 
 public class Hotbar : MonoBehaviour
 {
-    int currentSlot = 1;
+    public int currentSlot = 1;
     int totalSlots = 7;
     List<Image> slots;
     [SerializeField] Sprite defaultimg;
@@ -133,6 +133,18 @@ public class Hotbar : MonoBehaviour
             transform.GetChild(slot).GetChild(0).GetComponent<Image>().enabled = false;
         }
     }
+    public bool CheckForItem(int id)
+    {
+        if (slotID[currentSlot - 1] == id)
+        {
+            return true;
+        }
+        else 
+        { 
+            return false; 
+        }
+
+    }
     public void SlotSelection()
     {
             if (Input.anyKeyDown)
@@ -174,7 +186,7 @@ public class Hotbar : MonoBehaviour
                     Selecter.transform.position = transform.GetChild(6).transform.position;
                 }
             }
-        }
-
-
     }
+
+
+}
