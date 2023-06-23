@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DamageDealer : MonoBehaviour
 {
+    [SerializeField] int damageAmount;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class DamageDealer : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().DoDamage(25);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().DoDamage(damageAmount);
         }
     }
 }
